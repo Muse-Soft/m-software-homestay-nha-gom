@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nhà Gốm — Homestay Hội An</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Be+Vietnam+Pro:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --kem:#F5EFE4; --nau-dam:#33261A; --nau-gom:#8A5A3B;
+    --xanh-la:#4E5D3A; --trang:#FFFFFF; --kem-dam:#E4D9C6;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--kem);color:var(--nau-dam);
+    font-family:"Be Vietnam Pro",system-ui,sans-serif;font-size:16px;line-height:1.6}
+  h1,h2,h3{font-family:"Fraunces",Georgia,serif;line-height:1.25}
+  h1{font-size:44px} h2{font-size:30px} h3{font-size:22px}
+  a{color:var(--nau-gom)}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+  header{background:var(--kem);border-bottom:1px solid var(--kem-dam);position:sticky;top:0;z-index:10}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px}
+  .logo{font-family:"Fraunces",Georgia,serif;font-size:24px;font-weight:700;color:var(--nau-dam);text-decoration:none}
+  nav a{margin-left:20px;text-decoration:none;font-weight:600;color:var(--nau-dam)}
+  .btn{display:inline-block;background:var(--nau-gom);color:var(--trang);border:1px solid var(--nau-gom);
+    padding:12px 24px;border-radius:999px;text-decoration:none;font-size:16px;font-weight:600;cursor:pointer}
+  .btn-ghost{background:transparent;color:var(--nau-gom)}
+  .btn[disabled]{opacity:.65;cursor:not-allowed}
+  section{padding:72px 0}
+  section.alt{background:var(--kem-dam)}
+  .note-mau{font-size:14px;color:var(--nau-gom);font-style:italic}
+  /* Hero 16:9 toàn màn hình */
+  .hero{position:relative;padding:0}
+  .hero img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;filter:sepia(.12) saturate(.95)}
+  .hero-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;color:var(--trang);background:rgba(51,38,26,.38);padding:24px}
+  .hero-text h1{margin:0 0 8px;text-shadow:0 2px 12px rgba(0,0,0,.45)}
+  .hero-text p{font-size:18px;margin:0 0 20px;text-shadow:0 1px 8px rgba(0,0,0,.45)}
+  .hero .note-mau{color:#fff}
+  /* Giới thiệu: ảnh + chữ ngắn */
+  .split{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center}
+  .split img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px}
+  .split img.tall{aspect-ratio:4/5}
+  .tag{display:inline-block;background:var(--xanh-la);color:var(--trang);font-size:14px;font-weight:600;
+    padding:4px 12px;border-radius:999px;margin-bottom:8px}
+  /* Phòng */
+  .rooms{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+  .room{background:var(--trang);border:1px solid var(--kem-dam);border-radius:16px;overflow:hidden}
+  .room-main{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+  .room-thumbs{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px 12px 0}
+  .room-thumbs img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px}
+  .room-body{padding:20px 24px 24px}
+  .room-body h3{margin:0 0 4px}
+  .gia{color:var(--nau-gom);font-weight:600;font-size:18px;margin:4px 0 8px}
+  /* Trải nghiệm */
+  .exp{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+  .exp article{background:var(--trang);border:1px solid var(--kem-dam);border-radius:16px;overflow:hidden}
+  .exp img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block}
+  .exp div{padding:20px 24px}
+  /* Đánh giá */
+  .reviews{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  .reviews blockquote{background:var(--trang);border-left:4px solid var(--nau-gom);border-radius:0 12px 12px 0;
+    margin:0;padding:24px}
+  /* Đặt phòng + bản đồ */
+  .booking{background:var(--trang);border:1px solid var(--kem-dam);border-radius:16px;padding:32px;text-align:center}
+  .map-placeholder{border:2px dashed var(--nau-gom);border-radius:16px;padding:64px 24px;text-align:center;
+    background:var(--kem-dam);color:var(--nau-dam)}
+  footer{border-top:1px solid var(--kem-dam);padding:32px 0;text-align:center;font-size:14px}
+  @media (max-width:768px){
+    section{padding:44px 0}
+    h1{font-size:32px} h2{font-size:26px}
+    .split,.rooms,.exp,.reviews{grid-template-columns:1fr}
+    nav a{display:none}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="logo" href="#">🏺 Nhà Gốm</a>
+    <nav>
+      <a href="#gioi-thieu">Giới thiệu</a>
+      <a href="#phong">Phòng</a>
+      <a href="#xuongs">Xưởng gốm</a>
+      <a href="#trai-nghiem">Trải nghiệm</a>
+      <a href="#dat-phong">Đặt phòng</a>
+    </nav>
+    <a class="btn" href="#dat-phong">Đặt phòng</a>
+  </div>
+</header>
+
+<!-- HERO 16:9 -->
+<section class="hero">
+  <img src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=1920&q=80" alt="Ảnh mẫu: sân nhà phố cổ với đèn lồng buổi chiều">
+  <div class="hero-text">
+    <h1>Nhà Gốm — Homestay Hội An</h1>
+    <p>Ngủ trong nhà phố cổ, thức dậy cùng mùi đất nung và ánh đèn lồng.</p>
+    <a class="btn" href="#dat-phong">Đặt phòng</a>
+    <p class="note-mau">Ảnh trên là ảnh mẫu.</p>
+  </div>
+</section>
+
+<!-- GIỚI THIỆU -->
+<section id="gioi-thieu">
+  <div class="wrap split">
+    <div>
+      <span class="tag">Giới thiệu</span>
+      <h2>Một ngôi nhà phố cổ, một xưởng gốm nhỏ</h2>
+      <p>Nhà Gốm là homestay trong lòng phố cổ Hội An: sân nhà rợp bóng, tường vàng kem,
+      và ngay bên hiên là xưởng gốm nơi đất được nhào nặn thành chén, bình, đèn mỗi ngày.
+      Ở đây mọi thứ trôi chậm lại — đúng nhịp của một buổi chiều Hội An.</p>
+      <p class="note-mau">Nội dung giới thiệu là bản mẫu, sẽ thay bằng thông tin thật của homestay khi có.</p>
+    </div>
+    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="Ảnh mẫu: sân nhà">
+  </div>
+</section>
+
+<!-- 4 PHÒNG -->
+<section id="phong" class="alt">
+  <div class="wrap">
+    <h2>4 phòng nghỉ</h2>
+    <p>Ảnh phòng tỉ lệ 4:3 theo DESIGN.md. Giá dưới đây là <strong>giá mẫu</strong>.</p>
+    <div class="rooms">
+
+      <article class="room">
+        <img class="room-main" src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1200&q=80" alt="Ảnh mẫu: Phòng Gốm Đất">
+        <div class="room-thumbs">
+          <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80" alt="Ảnh mẫu: Phòng Gốm Đất, góc khác">
+          <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=800&q=80" alt="Ảnh mẫu: Phòng Gốm Đất, chi tiết">
+        </div>
+        <div class="room-body">
+          <h3>Phòng Gốm Đất</h3>
+          <p class="gia">650.000đ / đêm <span class="note-mau">(giá mẫu)</span></p>
+          <p>Phòng đôi nhìn ra sân trong, tường đất nung và đồ gốm trang trí thủ công.</p>
+          <a class="btn btn-ghost" href="#dat-phong">Xem phòng</a>
+        </div>
+      </article>
+
+      <article class="room">
+        <img class="room-main" src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1200&q=80" alt="Ảnh mẫu: Phòng Đèn Lồng">
+        <div class="room-thumbs">
+          <img src="https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=800&q=80" alt="Ảnh mẫu: Phòng Đèn Lồng, góc khác">
+          <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=800&q=80" alt="Ảnh mẫu: Phòng Đèn Lồng, chi tiết">
+        </div>
+        <div class="room-body">
+          <h3>Phòng Đèn Lồng</h3>
+          <p class="gia">750.000đ / đêm <span class="note-mau">(giá mẫu)</span></p>
+          <p>Phòng ban công treo đèn lồng, buổi tối sáng ấm cả một góc phố.</p>
+          <a class="btn btn-ghost" href="#dat-phong">Xem phòng</a>
+        </div>
+      </article>
+
+      <article class="room">
+        <img class="room-main" src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80" alt="Ảnh mẫu: Phòng Sân Vườn">
+        <div class="room-thumbs">
+          <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800&q=80" alt="Ảnh mẫu: Phòng Sân Vườn, góc khác">
+          <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80" alt="Ảnh mẫu: Phòng Sân Vườn, chi tiết">
+        </div>
+        <div class="room-body">
+          <h3>Phòng Sân Vườn</h3>
+          <p class="gia">850.000đ / đêm <span class="note-mau">(giá mẫu)</span></p>
+          <p>Phòng rộng mở ra vườn cây, thích hợp cho gia đình nhỏ hoặc nhóm bạn.</p>
+          <a class="btn btn-ghost" href="#dat-phong">Xem phòng</a>
+        </div>
+      </article>
+
+      <article class="room">
+        <img class="room-main" src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=80" alt="Ảnh mẫu: Phòng Gác Mái">
+        <div class="room-thumbs">
+          <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=800&q=80" alt="Ảnh mẫu: Phòng Gác Mái, góc khác">
+          <img src="https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=800&q=80" alt="Ảnh mẫu: Phòng Gác Mái, chi tiết">
+        </div>
+        <div class="room-body">
+          <h3>Phòng Gác Mái</h3>
+          <p class="gia">550.000đ / đêm <span class="note-mau">(giá mẫu)</span></p>
+          <p>Gác mái ấm cúng với mái gỗ và cửa sổ nhỏ nhìn ra mái ngói phố cổ.</p>
+          <a class="btn btn-ghost" href="#dat-phong">Xem phòng</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- XƯỞNG GỐM -->
+<section id="xuongs">
+  <div class="wrap split">
+    <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&w=1200&q=80" alt="Ảnh mẫu: bàn tay nặn gốm trong xưởng">
+    <div>
+      <span class="tag">Xưởng gốm</span>
+      <h2>Xưởng gốm ngay trong nhà</h2>
+      <p>Xưởng nhỏ mở cửa đón khách tham quan mỗi ngày: xem thợ vuốt gốm, nung men,
+      và tự tay làm một món đồ mang về làm kỷ niệm.</p>
+      <p class="note-mau">Ảnh xưởng gốm là ảnh mẫu, tỉ lệ 4:3 theo DESIGN.md.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRẢI NGHIỆM -->
+<section id="trai-nghiem" class="alt">
+  <div class="wrap">
+    <h2>Trải nghiệm quanh nhà</h2>
+    <div class="exp">
+      <article>
+        <img src="https://images.unsplash.com/photo-1493106641515-6b5631de4bb9?auto=format&fit=crop&w=900&q=80" alt="Ảnh mẫu: lớp làm gốm">
+        <div><h3>Lớp làm gốm</h3><p>Tự tay vuốt một chiếc chén trên bàn xoay, có thợ hướng dẫn tận tay. <span class="note-mau">(Nội dung mẫu.)</span></p></div>
+      </article>
+      <article>
+        <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=900&q=80" alt="Ảnh mẫu: chợ sáng">
+        <div><h3>Chợ sáng</h3><p>Dạo chợ buổi sớm, nếm thử đặc sản địa phương cùng chủ nhà. <span class="note-mau">(Nội dung mẫu.)</span></p></div>
+      </article>
+      <article>
+        <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=900&q=80" alt="Ảnh mẫu: xe đạp phố cổ">
+        <div><h3>Đạp xe phố cổ</h3><p>Xe đạp miễn phí cho khách, thong dong qua những con hẻm đèn lồng. <span class="note-mau">(Nội dung mẫu.)</span></p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ĐÁNH GIÁ -->
+<section>
+  <div class="wrap">
+    <h2>Khách nói gì</h2>
+    <p class="note-mau">Các đánh giá dưới đây là mẫu minh họa, chưa phải đánh giá thật.</p>
+    <div class="reviews">
+      <blockquote>
+        <p>“Ngủ dậy nghe tiếng chim trong sân, chiều ra xưởng nặn gốm — chuyến đi chậm rãi nhất của mình từ trước đến nay.”</p>
+        <footer>— Khách mẫu A <span class="note-mau">(đánh giá mẫu)</span></footer>
+      </blockquote>
+      <blockquote>
+        <p>“Phòng sạch, thơm mùi gỗ, chủ nhà nhiệt tình chỉ chợ sáng và quán ăn ngon.”</p>
+        <footer>— Khách mẫu B <span class="note-mau">(đánh giá mẫu)</span></footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ĐẶT PHÒNG + BẢN ĐỒ -->
+<section id="dat-phong" class="alt">
+  <div class="wrap">
+    <div class="booking">
+      <h2>Đặt phòng</h2>
+      <p>Số điện thoại đặt phòng: <strong>chưa cập nhật</strong></p>
+      <p>
+        <button class="btn" type="button" disabled title="Chưa có số điện thoại thật">Gọi đặt phòng — chưa cập nhật</button>
+        <button class="btn btn-ghost" type="button" disabled title="Chưa có tài khoản Zalo thật">Zalo — chưa cập nhật</button>
+      </p>
+      <p class="note-mau">Các nút đặt phòng hiện chưa liên kết tới số điện thoại hay tài khoản Zalo nào, vì chưa có thông tin thật. Khi có số thật, nút sẽ được gắn link gọi/Zalo tương ứng.</p>
+    </div>
+    <div style="height:40px"></div>
+    <h2>Bản đồ</h2>
+    <div class="map-placeholder">
+      <p><strong>Bản đồ — placeholder</strong></p>
+      <p>Chưa có địa chỉ thật nên chưa gắn bản đồ thật. Vị trí sẽ hiển thị tại đây khi homestay cung cấp địa chỉ.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>🏺 Nhà Gốm — Homestay Hội An · Trang mẫu dựng theo DESIGN.md (TEC-138) · Mọi ảnh, giá và đánh giá trên trang này đều là dữ liệu mẫu.</p>
+  </div>
+</footer>
+</body>
+</html>
